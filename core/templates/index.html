@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Information Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 0;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input {
+            width: auto;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 30px auto 0;
+            width: 200px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Information</h1>
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" id="brand" name="brand" value="Ford" required>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" name="model" value="F-150 Lariat" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="model_year">Model Year</label>
+                    <input type="number" id="model_year" name="model_year" value="2018" required>
+                </div>
+                <div class="form-group">
+                    <label for="mileage">Mileage</label>
+                    <input type="number" id="mileage" name="mileage" value="74349" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fuel_type">Fuel Type</label>
+                    <select id="fuel_type" name="fuel_type" required>
+                        <option value="Gasoline" selected>Gasoline</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transmission">Transmission</label>
+                    <input type="text" id="transmission" name="transmission" value="10-Speed A/T" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="accident">Accident History</label>
+                    <input type="text" id="accident" name="accident" value="None reported" required>
+                </div>
+                <div class="form-group">
+                    <label>Clean Title</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="clean_title_yes" name="clean_title" value="yes" checked>
+                            <label for="clean_title_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="clean_title_no" name="clean_title" value="no">
+                            <label for="clean_title_no">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hp">Horsepower</label>
+                    <input type="number" id="hp" name="hp" value="500" required>
+                </div>
+                <div class="form-group">
+                    <label for="engine_size">Engine Size (L)</label>
+                    <input type="number" id="engine_size" name="engine_size" value="5.0" step="0.1" required>
+                </div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
