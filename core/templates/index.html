@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Information Form</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
         * {
             margin: 0;
@@ -63,6 +65,10 @@
             border-radius: 2px;
         }
 
+        form {
+            position: relative;
+        }
+
         .form-section {
             background-color: white;
             border-radius: 12px;
@@ -117,7 +123,8 @@
             transition: color 0.3s;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 14px 16px;
             border: 2px solid #e1e1e1;
@@ -128,7 +135,8 @@
             color: #333;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
@@ -189,19 +197,64 @@
             transform: translateY(0);
         }
 
+        .result {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 40%;
+            background-color: rgb(167, 167, 235);
+            border-radius: 20px;
+            color: white;
+            z-index: 999;
+        }
+
+        .close {
+
+            width: 100%;
+            height: 20%;
+            text-align: end;
+            padding-right: 40px;
+
+        }
+
+        .close p {
+            display: inline;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .price-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 80%;
+        }
+
+        .price-section span {
+            font-size: 30px;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
         @media (max-width: 768px) {
             .form-row {
                 flex-direction: column;
                 gap: 0;
             }
-            
+
             .container {
                 padding: 30px 20px;
             }
-            
+
             button {
                 width: 100%;
             }
+ 
+
+            
         }
 
         select {
@@ -218,13 +271,26 @@
         }
     </style>
 </head>
+
 <body>
+    {% if predect %}
+    <div class="result">
+        <div class="close">
+            <p>x</p>
+        </div>
+
+        <div class="price-section">
+            <span>Price:<br> {{ predect }}</span>
+        </div>
+
+    </div>
+    {% endif %}
     <div class="container">
         <div class="header">
-
             <h1>Vehicle Information</h1>
         </div>
-        <form>
+        <form method="post">
+            {% csrf_token %}
             <div class="form-section">
                 <h2 class="section-title">Basic Information</h2>
                 <div class="form-row">
@@ -295,15 +361,6 @@
                             <option value="Q4 e-tron Sportback Premium">Q4 e-tron Sportback Premium</option>
                             <option value="Countryman Cooper">Countryman Cooper</option>
                             <option value="S-10 LS">S-10 LS</option>
-                            <option value="F-150 XLT">F-150 XLT</option>
-                            <option value="F-150 Raptor">F-150 Raptor</option>
-                            <option value="Mustang">Mustang</option>
-                            <option value="Explorer">Explorer</option>
-                            <option value="Escape">Escape</option>
-                            <option value="Bronco">Bronco</option>
-                            <option value="Edge">Edge</option>
-                            <option value="Ranger">Ranger</option>
-                            <option value="Expedition">Expedition</option>
                         </select>
                     </div>
                 </div>
@@ -330,7 +387,7 @@
                             <option value="Hybrid">Hybrid</option>
                             <option value="E85 Flex Fuel">E85 Flex Fuel</option>
                             <option value="Diesel">Diesel</option>
-                            <option value="–">–</option>
+
                             <option value="Plug-In Hybrid">Plug-In Hybrid</option>
                             <option value="not supported">not supported</option>
                         </select>
@@ -369,13 +426,14 @@
                             <option value="6-Speed Automatic with Auto-Shift">6-Speed Automatic with Auto-Shift</option>
                             <option value="6-Speed Manual">6-Speed Manual</option>
                             <option value="7-Speed Manual">7-Speed Manual</option>
-                            <option value="6-Speed Electronically Controlled Automatic with O">6-Speed Electronically Controlled Automatic with O</option>
+                            <option value="6-Speed Electronically Controlled Automatic with O">6-Speed Electronically
+                                Controlled Automatic with O</option>
                             <option value="1-Speed Automatic">1-Speed Automatic</option>
                             <option value="10-Speed Automatic with Overdrive">10-Speed Automatic with Overdrive</option>
                             <option value="8-Speed Manual">8-Speed Manual</option>
                             <option value="2-Speed A/T">2-Speed A/T</option>
                             <option value="CVT-F">CVT-F</option>
-                            <option value="–">–</option>
+
                             <option value="F">F</option>
                             <option value="9-Speed Automatic with Auto-Shift">9-Speed Automatic with Auto-Shift</option>
                             <option value="7-Speed">7-Speed</option>
@@ -439,7 +497,8 @@
                         <label for="accident">Accident History</label>
                         <select id="accident" name="accident" required>
                             <option value="None reported" selected>None reported</option>
-                            <option value="At least 1 accident or damage reported">At least 1 accident or damage reported</option>
+                            <option value="At least 1 accident or damage reported">At least 1 accident or damage
+                                reported</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -458,8 +517,22 @@
                 </div>
             </div>
 
-            <button type="submit">Submit Information</button>
+            <button type="submit" id="submitBtn">Submit Information</button>
+
         </form>
+
+
     </div>
+
+    <script>
+        const closeBtn = document.querySelector('.close p');
+        const result = document.querySelector('.result');
+        closeBtn.addEventListener('click', () => {
+            result.style.display = "none"
+
+        })
+
+    </script>
 </body>
+
 </html>
